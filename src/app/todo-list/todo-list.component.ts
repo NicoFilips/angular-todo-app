@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button'; // Importieren
 
 @Component({
   selector: 'app-todo-list',
   standalone: true,
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  imports: [CommonModule, FormsModule]
+  imports: [CommonModule, FormsModule, MatButtonModule] // Hinzufügen
 })
 export class TodoListComponent {
   tasks: string[] = ['Einkaufen gehen', 'Angular lernen', 'Projekt starten'];
-  newTask: string = 'Eingabe ....'; // Variable für das Eingabefeld
+  newTask: string = '';
 
   addTask() {
-    if (this.newTask.trim()) { // Verhindert leere Aufgaben
+    if (this.newTask.trim()) {
       this.tasks.push(this.newTask.trim());
-      this.newTask = ''; // Eingabefeld zurücksetzen
+      this.newTask = '';
     }
   }
 
   deleteTask(index: number) {
-    this.tasks.splice(index, 1); // Entfernt die Aufgabe an der angegebenen Position
+    this.tasks.splice(index, 1);
   }
 }
